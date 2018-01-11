@@ -1,0 +1,45 @@
+<p>
+    Hi, my name is: <span data-bind="text: name"/>
+</p>
+
+<p>
+    My name dasherized is: <span data-bind="text: nameDasherized"/>
+</p>
+
+<p>
+    I can also change my name dynamically: 
+    <input type="text" data-bind="value: name, valueUpdate: 'afterkeydown'"></input>
+</p>
+
+<table data-bind="if: persons() && persons().length > 0">
+    <thead><tr>
+        <th>First Name</th><th>Last Name</th><th>Gender</th><th>Id</th><th></th>
+    </tr></thead>
+    <tbody data-bind="foreach: persons">
+        <tr data-bind="css: { personIsNotActive: !id() }">
+            <td data-bind="text: firstName"></td>
+            <td data-bind="text: lastName"></td>
+            <td data-bind="text: gender"></td>
+            <td data-bind="text: id"></td>
+            <td><a href="#" data-bind="click: $parent.removePerson">Remove</a></td>
+        </tr>
+    </tbody>
+    <tbody></tbody>
+
+</table>
+
+<div style="float:left;" data-bind="with: newPerson">
+        <input type="text" data-bind="value: firstName" placeholder="Enter First Name"/>
+        <input type="text" data-bind="value: lastName" placeholder="Enter Last Name"/>
+        <select data-bind='options: $parent.genders, optionsCaption: "Select a gender...", value: gender'></select>
+        <input type="text" data-bind="value: id" placeholder="Enter Id"/>
+</div>
+
+<div>
+    <button data-bind="click: addPerson">Add person</button>
+</div>
+
+<link rel="stylesheet" href="index.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout-validation/2.0.3/knockout.validation.min.js"></script>
+<script src="index.js" type="text/javascript"></script>
